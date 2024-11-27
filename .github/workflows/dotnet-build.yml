@@ -50,7 +50,7 @@ jobs:
       uses: ./.github/actions/app-build
       with:
         dotnet: 'net8.0'
-        platform: 'linux-amd64'
+        platform: 'linux-x64'
         project: 'GameCollector.Server'
         artifact: 'linux-x64'
         version: '${{ steps.date.outputs.DATE }}.${{ github.run_number }}'

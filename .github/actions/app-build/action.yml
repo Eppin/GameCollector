@@ -31,7 +31,7 @@ runs:
   # Build applications
     - name: Build application
       shell: pwsh
-      run: dotnet publish -c Release -r ${{ inputs.platform }} --sc false -p:PublishSingleFile=true /p:Version=${{ inputs.version }} .\${{ inputs.project }}\${{ inputs.project }}.csproj
+      run: dotnet publish -c Release -r ${{ inputs.platform }} /p:Version=${{ inputs.version }} .\${{ inputs.project }}\${{ inputs.project }}.csproj
 
     # Upload artifact
     - name: Upload build artifacts
