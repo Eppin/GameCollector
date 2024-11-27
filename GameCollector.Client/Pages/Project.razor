@@ -1,0 +1,72 @@
+@page "/Project/{ProjectId}"
+
+<PageTitle>Pokémon: Gotta catch 'em all</PageTitle>
+
+<MudContainer MaxWidth="MaxWidth.Large">
+    <div class="d-flex justify-space-around">
+        @foreach (var uri in GetHeaderUri())
+        {
+            <MudImage Src="@uri" Style="max-width: 45%;max-height: 250px"/>
+        }
+    </div>
+
+    <MudCard>
+        <MudCardContent>
+            <MudText Typo="Typo.h5">@GetTitle()</MudText>
+
+            <MudGrid Class="mt-1">
+                <MudItem xs="6">
+                    <MudTextField Value="Game.OT" Label="Original Trainer" ReadOnly="true" Variant="Variant.Outlined"/>
+                </MudItem>
+                <MudItem xs="6">
+                    <MudTextField Value="Game.IDNo" Label="IDNo." ReadOnly="true" Variant="Variant.Outlined"/>
+                </MudItem>
+
+                <MudItem xs="6" md="3">
+                    <MudTextField Value="GetProgressStr()" Label="Progess" ReadOnly="true" Variant="Variant.Outlined"/>
+                </MudItem>
+                <MudItem xs="6" md="3">
+                    <MudTextField Value="GetProgressPercent()" Label="Progess" ReadOnly="true"
+                                  Variant="Variant.Outlined"/>
+                </MudItem>
+
+                <MudItem xs="12" md="6">
+                    <MudTextField Value="Game.PlayTime" Label="Time Played" ReadOnly="true" Variant="Variant.Outlined"/>
+                </MudItem>
+            </MudGrid>
+        </MudCardContent>
+    </MudCard>
+
+    <MudTabs Elevation="4" Rounded="true" Class="mt-6" PanelClass="py-6">
+        @foreach (var group in Groups)
+        {
+            <MudTabPanel Text="@group.Name">
+                <MudGrid>
+                    @foreach (var dex in group.Dex)
+                    {
+                        <MudItem xs="6" md="2">
+                            <MudPaper>
+                                <MudGrid Spacing="0">
+                                    <MudItem>
+                                        <MudImage Style="max-width: 100%;" src="@GetImageUri(dex, "pokemon")"/>
+                                    </MudItem>
+
+                                    <MudItem xs="12" Class="d-flex align-center justify-space-between flex-grow-1 gap-4">
+                                        <span class="ml-2">@GetLocalIndex(dex)</span>
+                                        <span class="d-flex mr-2">
+                                            <img src="@GetImageUri(dex, "ball")" style="max-width: 32px" alt="Poké Ball"/>
+                                        </span>
+                                    </MudItem>
+
+                                    <MudItem xs="12" Class="mx-2" Style="overflow: hidden;text-overflow:ellipsis;white-space: nowrap;">
+                                        @((MarkupString)GetMetLocation(dex))
+                                    </MudItem>
+                                </MudGrid>
+                            </MudPaper>
+                        </MudItem>
+                    }
+                </MudGrid>
+            </MudTabPanel>
+        }
+    </MudTabs>
+</MudContainer>

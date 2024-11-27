@@ -1,0 +1,12 @@
+﻿@using GameCollector.Client.Extensions
+
+<MudNavMenu>
+    <MudNavLink Href="/" Match="NavLinkMatch.All">Home</MudNavLink>
+    <MudNavGroup Title="Projects" Expanded="true">
+        @foreach (var project in Projects)
+        {
+            <MudNavLink Href=@($"/Project/{(int)project}") Match="NavLinkMatch.Prefix">@project.ToName()</MudNavLink>
+        }
+    </MudNavGroup>
+    <MudNavLink Href="Settings" Match="NavLinkMatch.Prefix">Settings</MudNavLink>
+</MudNavMenu>

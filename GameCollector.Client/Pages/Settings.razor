@@ -1,0 +1,21 @@
+@page "/Settings"
+
+<PageTitle>Pokémon: Gotta catch 'em all</PageTitle>
+
+<MudContainer Class="mt-16" MaxWidth="MaxWidth.Medium">
+    <MudCard>
+        <MudCardContent>
+            <MudText>Upload SAV file</MudText>
+            <MudText Typo="Typo.body2">Upload a support SAV file, the system will detect the game.</MudText>
+        </MudCardContent>
+        <MudCardActions>
+            <MudFileUpload @ref="@_fileUpload" T="IBrowserFile" FilesChanged="Upload">
+                <ActivatorContent>
+                    <MudButton FullWidth="true" Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.CloudUpload">
+                        Upload SAV
+                    </MudButton>
+                </ActivatorContent>
+            </MudFileUpload>
+        </MudCardActions>
+    </MudCard>
+</MudContainer>
